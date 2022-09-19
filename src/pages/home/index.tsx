@@ -89,26 +89,14 @@ function Home() {
     }
   };
   const handlePasswordSubmit = async () => {
-    if (newPassword !== newPasswordCheck) {
-      alert("새로운 비밀번호와 확인 비밀번호가 일치하지 않습니다.");
-      return;
-    }
-    try {
-      const { data, status } = await apiInstant.post("/user/password", {
-        password,
-        newPassword,
-      });
-      if (status !== 201) {
-        alert(data);
-      }
-      alert("비밀번호 변경 완료");
-      setNewPasswordCheck("");
-      setNewPassword("");
-      setPassword("");
-      setIsPasswordModalOpen(false);
-    } catch (error: any) {
-      alert(error?.response?.data || "비밀번호 변경에 실패했습니다.");
-    }
+    /** 비밀번호 수정 로직
+     * post /user/password
+     * body
+     * password:string - 기존 비밃번호
+     * newPassword: string- 새 비밀번호
+     *
+     * 성공시 status 201 data 없음
+     */
   };
   return (
     <>
